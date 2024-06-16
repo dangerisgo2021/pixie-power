@@ -18,16 +18,163 @@
 
 body {
   color: rgb(var(--foreground-rgb));
-  background: linear-gradient(
-      to bottom,
-      transparent,
-      rgb(var(--background-end-rgb))
-    )
-    rgb(var(--background-start-rgb));
+  background: rgb(var(--background-end-rgb));
+  min-height: 100vh;
+  display: grid;
+  grid-template-rows: auto 1fr 50px;
+  align-items: center;
 }
 
-@layer utilities {
-  .text-balance {
-    text-wrap: balance;
+/*
+  1. Use a more-intuitive box-sizing model.
+*/
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+}
+/*
+  2. Remove default margin
+*/
+* {
+  margin: 0;
+}
+/*
+  Typographic tweaks!
+  3. Add accessible line-height
+  4. Improve text rendering
+*/
+body {
+  line-height: 1.5;
+  -webkit-font-smoothing: antialiased;
+}
+/*
+  5. Improve media defaults
+*/
+img,
+picture,
+video,
+canvas,
+svg {
+  display: block;
+  max-width: 100%;
+}
+/*
+  6. Remove built-in form typography styles
+*/
+input,
+button,
+textarea,
+select {
+  font: inherit;
+}
+/*
+  7. Avoid text overflows
+*/
+p,
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  overflow-wrap: break-word;
+}
+/*
+  8. Create a root stacking context
+*/
+#root,
+#__next {
+  isolation: isolate;
+}
+
+body {
+  background-color: #483d8b; /* Twilight Sky */
+  color: #ffffff; /* Fairy Dust White */
+  font-family: Arial, sans-serif;
+  margin: 0;
+  padding: 0;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  color: #ffd700; /* Pixie Gold */
+  margin: 0;
+  padding: 10px 0;
+}
+
+a {
+  color: #add8e6; /* Pixie Blue */
+  text-decoration: none;
+}
+
+a:hover {
+  color: #9370db; /* Magic Purple */
+}
+
+/* Responsive Font Sizes */
+html {
+  font-size: 100%; /* Default: 16px */
+}
+
+@media (max-width: 1200px) {
+  html {
+    font-size: 90%; /* 14.4px */
   }
+}
+
+@media (max-width: 992px) {
+  html {
+    font-size: 80%; /* 12.8px */
+  }
+}
+
+@media (max-width: 768px) {
+  html {
+    font-size: 75%; /* 12px */
+  }
+}
+
+@media (max-width: 576px) {
+  html {
+    font-size: 70%; /* 11.2px */
+  }
+}
+
+h1 {
+  font-size: 2.5rem; /* Default: 40px */
+}
+
+h2 {
+  font-size: 2rem; /* Default: 32px */
+}
+
+h3 {
+  font-size: 1.75rem; /* Default: 28px */
+}
+
+h4 {
+  font-size: 1.5rem; /* Default: 24px */
+}
+
+h5 {
+  font-size: 1.25rem; /* Default: 20px */
+}
+
+h6 {
+  font-size: 1rem; /* Default: 16px */
+}
+
+p,
+a,
+button,
+.card,
+.section,
+.highlight {
+  font-size: 1rem; /* Default: 16px */
+  color: black;
 }
