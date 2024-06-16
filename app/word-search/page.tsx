@@ -1,5 +1,5 @@
 "use client";
-import styles from "@/app/word-search/word-search.module.css";
+import { WordSearchRender } from "@/app/word-search/components/word-search";
 import { useEffect, useState } from "react";
 import {
   createWordSearch,
@@ -26,18 +26,9 @@ export default function WordSearch() {
     setWordSearch(newWordSearch);
   }, []);
 
-  const cells = Object.values(wordSearch?.gridMap ?? {});
     return (
     <div className="grid justify-items-center self-start">
-      <div className={styles.wordSearch} style={{ "--w": width }}>
-        {cells.map((cell) => {
-          return (
-            <div key={cell.id} className={styles.wsCell}>
-              {cell.letter}
-            </div>
-          );
-        })}
-      </div>
+      <WordSearchRender wordSearch={wordSearch} width={width} />
       <ul className="grid grid-cols-3 gap-5">
         {wordSearch?.placedWords.map((word) => {
           return <li key={word}>{word}</li>;

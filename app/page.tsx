@@ -29,15 +29,11 @@ export default function Home() {
               interactive word searches and more!
             </p>
           </div>
-          <Link className={styles.btn} href="/wordsearch">
+          <Link className={styles.btn} href="/word-search">
             Play Word Search
           </Link>
         </div>
       </main>
-
-      <footer>
-        <p>&copy; 2024 Pixie Power. All rights reserved.</p>
-      </footer>
     </div>
   );
 }
