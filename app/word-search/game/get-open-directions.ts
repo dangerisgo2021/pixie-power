@@ -15,22 +15,36 @@ export const getOpenDirection = ({
   height,
 }: GetDirectionListParams) => {
   return directionsList.filter((direction) => {
-    //check up fits
     if (direction === "up") {
       return row >= word.length;
     }
 
-    //check down fits
     if (direction === "down") {
       return row + word.length < height;
     }
-    //check left fits
+
     if (direction === "left") {
       return column >= word.length;
     }
-    //check right fits
+
     if (direction === "right") {
       return column + word.length < width;
+    }
+
+    if (direction === "downRight") {
+      return row + word.length < height && column + word.length < width;
+    }
+
+    if (direction === "upRight") {
+      return row >= word.length && column + word.length < width;
+    }
+
+    if (direction === "upLeft") {
+      return row >= word.length && column >= word.length;
+    }
+
+    if (direction === "downLeft") {
+      return row + word.length < height && column + word.length < width;
     }
   });
 };

@@ -1,4 +1,4 @@
-.wordSearch {
+.wordSearchGrid {
     display: grid;
     justify-content: space-around;
     grid-template-columns: repeat(var(--w), 1fr);
@@ -17,4 +17,8 @@
     align-items: center;
     justify-items: center;
     font-size: 2rem;
+}
+
+.selectedCell {
+    color: gold;
 }

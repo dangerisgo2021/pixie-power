@@ -5,12 +5,14 @@ import {
 } from "@/app/word-search/game/constants";
 import { getOpenDirection } from "@/app/word-search/game/get-open-directions";
 
-type Cell = {
+export type Cell = {
   letter: string;
   open: number;
   row: number;
   col: number;
   id: string;
+  selected: boolean;
+  locked: boolean;
 };
 export type WordSearchGame = {
   gridMap: {
@@ -48,6 +50,8 @@ export const createWordSearch = ({
         row: rowIndex,
         col: columnIndex,
         id: cellId,
+        selected: false,
+        locked: false,
         letter: getRandomCharacter(),
       };
     }
@@ -86,7 +90,9 @@ const addWordsToCrossword = ({ grid, words, width, height }) => {
         for (let j = 0; j < word.length; j++) {
           const currentLetter = word.charAt(j);
           const currentCell = grid.gridMap[`cell_${currentRow}_${currentColumn}`];
-          if (currentCell.open === 0 || currentCell.letter === currentLetter) {
+          console.log({currentCell, currentRow, currentColumn, grid})
+
+          if (currentCell?.open === 0 || currentCell?.letter === currentLetter) {
             currentCell.letter = currentLetter;
             //currentCell.className = "full";
             currentRow = currentRow + 1 * currentDirection.row;
@@ -102,7 +108,7 @@ const addWordsToCrossword = ({ grid, words, width, height }) => {
               backtrackColumn = backtrackColumn - 1 * currentDirection.col;
               const backtrackCell =
                 grid.gridMap[`cell_${backtrackRow}_${backtrackColumn}`];
-              const open = backtrackCell.open - 1;
+              backtrackCell.open = backtrackCell.open - 1;
             }
             continue dirLoop;
           }
