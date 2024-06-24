@@ -148,7 +148,7 @@ export default function WordSearchPage() {
       <h2>
         {foundWords.length !== wordSearch?.placedWords.length
           ? `You have found ${foundWords.length} out of ${wordSearch?.placedWords?.length} `
-            : <button className="rounded-full bg-green-600" onClick={handleResetClicked}>"You Won! Click to play again"</button> }
+            : <button className="rounded-full bg-green-600" onClick={handleResetClicked}>You Won! Click to play again</button> }
       </h2>
       {activeText && <h2>{activeText}</h2>}
       <ul className="grid grid-cols-3 gap-5">
