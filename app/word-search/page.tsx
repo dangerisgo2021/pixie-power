@@ -103,16 +103,12 @@ export default function WordSearchPage() {
   const handleResetClicked = () => {
     const newWordSearch = createWordSearch({ width, height });
     setWordSearch(newWordSearch);
+    setFoundWords([])
+    setAnswerDirection(undefined)
+    setSelectedCells([])
   }
   const hasWordsLeft = wordSearch?.placedWords?.length === foundWords.length;
   const activeText = activeAnswer?.map(({ letter }) => letter).join("");
-  console.log({
-    hasWordsLeft,
-    activeText,
-    activeAnswer,
-    selectedCells,
-    answerDirection,
-  });
 
   useEffect(() => {
     console.log({ activeText });
@@ -132,9 +128,6 @@ export default function WordSearchPage() {
         gridCell.selected = false;
       });
       setActiveAnswer([]);
-      setFoundWords([])
-      setAnswerDirection(undefined)
-      setSelectedCells([])
     }
   }, [activeAnswer]);
   return (
