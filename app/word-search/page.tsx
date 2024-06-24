@@ -100,7 +100,10 @@ export default function WordSearchPage() {
       // else
     }
   };
-
+  const handleResetClicked = () => {
+    const newWordSearch = createWordSearch({ width, height });
+    setWordSearch(newWordSearch);
+  }
   const hasWordsLeft = wordSearch?.placedWords?.length === foundWords.length;
   const activeText = activeAnswer?.map(({ letter }) => letter).join("");
   console.log({
@@ -129,6 +132,9 @@ export default function WordSearchPage() {
         gridCell.selected = false;
       });
       setActiveAnswer([]);
+      setFoundWords([])
+      setAnswerDirection(undefined)
+      setSelectedCells([])
     }
   }, [activeAnswer]);
   return (
@@ -142,7 +148,7 @@ export default function WordSearchPage() {
       <h2>
         {foundWords.length !== wordSearch?.placedWords.length
           ? `You have found ${foundWords.length} out of ${wordSearch?.placedWords?.length} `
-          : "You Won !!!"}
+            : <button className="rounded-full bg-green-600" onClick={handleResetClicked}>"You Won! Click to play again"</button> }
       </h2>
       {activeText && <h2>{activeText}</h2>}
       <ul className="grid grid-cols-3 gap-5">
