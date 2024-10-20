@@ -47,7 +47,7 @@ fn menu_event_handler(
 
 fn menu_interactions_event_emitter(
     mut event_writer: EventWriter<MenuEvent>,
-    interaction_query: Query<(&Interaction, &MenuButton), (Changed<Interaction>)>,
+    interaction_query: Query<(&Interaction, &MenuButton), Changed<Interaction>>,
 ) {
     for (interaction, menu_button) in interaction_query.iter() {
         match interaction {

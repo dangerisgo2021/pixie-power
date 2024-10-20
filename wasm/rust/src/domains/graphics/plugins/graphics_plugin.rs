@@ -1,7 +1,6 @@
 use bevy::app::{App, Plugin, Startup};
-use bevy::DefaultPlugins;
 use bevy::diagnostic::FrameTimeDiagnosticsPlugin;
-use bevy::prelude::{ImagePlugin, Msaa, PluginGroup};
+use bevy::prelude::{Msaa,};
 use crate::domains::graphics::resources::sprite_atlas::SpriteSheetAtlas;
 use crate::domains::graphics::services::spawn_camera::spawn_camera;
 use crate::domains::graphics::plugins::framerate_counter_plugin::FramerateCounterPlugin;
@@ -15,6 +14,5 @@ impl Plugin for GraphicsPlugin {
         app.add_systems(Startup, spawn_camera);
         app.add_plugins(FrameTimeDiagnosticsPlugin);
         app.add_plugins(FramerateCounterPlugin);
-        // app.add_systems(Update, adjust_transforms);
     }
 }

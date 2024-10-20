@@ -1,4 +1,22 @@
-use bevy::prelude::Component;
+use bevy::prelude::*;
+use bevy::utils::HashMap;
+use crate::domains::game::value_objects::direction::Direction;
+use crate::domains::game::value_objects::position::Position;
 
 #[derive(Component)]
-pub struct Player;
+pub struct Player {
+    pub tail_length: i32,
+    pub position: Position,
+    pub direction: Direction,
+}
+
+#[derive(Component)]
+pub struct Tail {
+    pub position: Position,
+}
+
+#[derive(Component)]
+pub struct SnakeNode {
+    pub position: Position,
+    pub index: i32
+}
