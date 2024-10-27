@@ -16,6 +16,7 @@ pub fn start_app() {
                 .set(WindowPlugin {
                     primary_window: Some(Window {
                         resizable: true,
+                        canvas: Some("#snake-canvas".into()),
                         resolution: WindowResolution::new(350., 600.),
                         ..default()
                     }),

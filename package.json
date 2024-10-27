@@ -10,9 +10,10 @@
     "wasm": " cd /wasm/rust/ & wasm-bindgen --out-dir ../../public/out --target web ./target/wasm32-unknown-unknown/release/rust.wasm"
   },
   "dependencies": {
+    "next": "^15.0.1",
     "prettier": "^3.3.2",
-    "react": "^18",
-    "react-dom": "^18"
+    "react": "^18.3.1",
+    "react-dom": "^18.3.1"
   },
   "devDependencies": {
     "@types/node": "^20",

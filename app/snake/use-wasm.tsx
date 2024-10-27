@@ -5,9 +5,20 @@ export default function useWasm(url: string) {
 
   useEffect(() => {
     async function loadWasm() {
+      console.log({ url, wasmModule });
+
       try {
+        const script = document.createElement("script");
+        const body = document.getElementsByTagName("body")[0];
+        script.src = url;
+        body.appendChild(script);
+        script.onload = () => {};
         const response = await fetch(url);
-        const wasm = await WebAssembly.instantiateStreaming(response);
+        console.log({ response, url, wasmModule });
+
+        const x = await wasmModule.default();
+        console.log({ response, x, wasmModule });
+        //const wasm = await WebAssembly.instantiateStreaming(response);
         setWasmModule(wasm.instance.exports);
       } catch (error) {
         console.error("Failed to load WASM module:", error);
