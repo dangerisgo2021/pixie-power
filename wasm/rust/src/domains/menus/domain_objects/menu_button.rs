@@ -3,7 +3,11 @@ use bevy::prelude::*;
 #[derive(Clone)]
 pub enum MenuButtonId {
     StartSnake,
-    Exit
+    Exit,
+    ChangeRight,
+    ChangeLeft,
+    ChangeUp,
+    ChangeDown,
 }
 
 #[derive(Component, Clone)]

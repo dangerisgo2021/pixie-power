@@ -1,5 +1,4 @@
 use bevy::prelude::*;
-use bevy::utils::HashMap;
 use crate::domains::game::value_objects::direction::Direction;
 use crate::domains::game::value_objects::position::Position;
 
@@ -8,11 +7,7 @@ pub struct Player {
     pub tail_length: i32,
     pub position: Position,
     pub direction: Direction,
-}
-
-#[derive(Component)]
-pub struct Tail {
-    pub position: Position,
+    pub can_change_direction: bool
 }
 
 #[derive(Component)]

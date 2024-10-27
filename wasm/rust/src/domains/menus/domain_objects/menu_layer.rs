@@ -1,5 +1,13 @@
 use bevy::prelude::*;
 
-/// Marker to find the container entity so we can show/hide the FPS counter
 #[derive(Component)]
 pub struct MenuLayer;
+
+#[derive(Component)]
+pub struct HudLayer;
+
+#[derive(Component)]
+pub struct HudText;
+
+#[derive(Component)]
+pub struct ControlsLayer;

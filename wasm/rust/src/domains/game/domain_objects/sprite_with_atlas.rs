@@ -1,7 +1,7 @@
 use bevy::prelude::*;
 
 #[derive(Bundle)]
-pub struct Piece {
+pub struct SpriteWithAtlas {
     pub sprite: SpriteBundle,
     pub atlas: TextureAtlas,
 }

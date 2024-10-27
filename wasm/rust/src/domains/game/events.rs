@@ -8,6 +8,8 @@ pub enum SnakeGameMessage {
     ChangePlayerDirection(Direction),
     PickupCollision,
     TailCollision,
+    PauseGame,
+    WallCollision,
 }
 
 #[derive(Event, Debug)]
