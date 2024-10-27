@@ -6,10 +6,10 @@
     "dev": "next dev",
     "build": "next build",
     "start": "next start",
-    "lint": "next lint"
+    "lint": "next lint",
+    "wasm": " cd /wasm/rust/ & wasm-bindgen --out-dir ../../public/out --target web ./target/wasm32-unknown-unknown/release/rust.wasm"
   },
   "dependencies": {
-    "next": "14.2.3",
     "prettier": "^3.3.2",
     "react": "^18",
     "react-dom": "^18"

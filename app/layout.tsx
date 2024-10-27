@@ -29,7 +29,7 @@ export default function RootLayout({
                 <Link href="/word-search">Word Search</Link>
               </li>
               <li className="mr-6">
-                <Link href="/gallery">Gallery</Link>
+                <Link href="/snake">Snake</Link>
               </li>
               <li className="mr-6">
                 <Link href="/about">About</Link>

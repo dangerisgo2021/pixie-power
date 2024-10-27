@@ -7,7 +7,7 @@ export default function Home() {
     <div>
       <Head>
         <title>Pixie Power</title>
-        <link rel="icon" href="/public/favicon.svg" />
+        <link rel="icon" href="/favicon.svg" />
       </Head>
 
       <main>
