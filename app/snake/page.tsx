@@ -1,7 +1,6 @@
 "use client";
 
 import styles from "@/app/snake/snake.module.css";
-import useWasm from "@/app/snake/use-wasm";
 import { useEffect } from "react";
 import initGame from "@/public/out/rust";
 export default function Snake() {
