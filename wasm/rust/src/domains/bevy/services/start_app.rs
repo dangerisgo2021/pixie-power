@@ -6,7 +6,7 @@ use crate::domains::graphics::plugins::graphics_plugin::GraphicsPlugin;
 use crate::domains::menus::plugins::menu_plugin::MenuPlugin;
 
 use bevy::prelude::*;
-use bevy::window::WindowResolution;
+use bevy::window::{PresentMode, WindowResolution};
 
 pub fn start_app() {
     App::new()
@@ -17,7 +17,7 @@ pub fn start_app() {
                     primary_window: Some(Window {
                         resizable: true,
                         canvas: Some("#snake-canvas".into()),
-                        resolution: WindowResolution::new(350., 600.),
+                        resolution: WindowResolution::new(400., 600.),
                         ..default()
                     }),
                     ..default()

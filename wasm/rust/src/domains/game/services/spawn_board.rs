@@ -19,23 +19,13 @@ pub fn spawn_board(
 
     for row in 0..height {
         for col in 0..width {
-            let index = row * height + col;
-            let square_position = Vec3::new(
-                col as f32 * (square_size),
-                row as f32 * (square_size),
-                snake_game.grid_level,
-            );
 
             // when on edge spawn wall instead of grid
             if row == 0 || row == height - 1 || col == 0 || col == width - 1 {
                 let position = Position::new(col, row);
-                println!("spawn wall  row {} col {}, position {:?}", row, col, position);
-
 
                 commands.spawn((
-                    Wall {
-                        position,
-                    },
+                    Wall { position },
                     SpriteWithAtlas {
                         sprite: SpriteBundle {
                             texture: asset_server.load("images\\fairy-spritesheet.png"),
@@ -56,27 +46,28 @@ pub fn spawn_board(
                     },
                 ));
             } else {
-                let square_color = if index % 2 == 0 {
-                    snake_game.square_color_primary
-                } else {
-                    snake_game.square_color_secondary
-                };
 
                 commands.spawn((
                     GridSquare {
                         position: Position::new(col, row),
                     },
-                    SpriteBundle {
-                        transform: Transform {
-                            translation: square_position,
-                            scale: Vec3::new(square_size, square_size, snake_game.scale),
+                    SpriteWithAtlas {
+                        sprite: SpriteBundle {
+                            texture: asset_server.load("images\\fairy-spritesheet.png"),
+                            transform: Transform {
+                                translation: Vec3::new(
+                                    row as f32 * square_size,
+                                    col as f32 * square_size,
+                                    snake_game.grid_level,
+                                ),
+                                ..default()
+                            },
                             ..default()
                         },
-                        sprite: Sprite {
-                            color: square_color,
-                            ..default()
+                        atlas: TextureAtlas {
+                            layout: atlas_layout.handle.clone(),
+                            index: 5,
                         },
-                        ..default()
                     },
                 ));
             }
@@ -91,7 +82,11 @@ pub fn spawn_board(
             sprite: SpriteBundle {
                 texture: asset_server.load("images\\fairy-spritesheet.png"),
                 transform: Transform {
-                    translation: Vec3::new(96., 64., -1.),
+                    translation: Vec3::new(
+                        6. * snake_game.square_size,
+                        4. * snake_game.square_size,
+                        -1.,
+                    ),
                     ..default()
                 },
                 ..default()

@@ -18,17 +18,16 @@ use rand::{thread_rng, Rng};
 
 pub struct SnakeGamePlugin;
 const BACKGROUND_COLOR: Color = Color::srgb(0.9, 0.9, 0.9);
-const TILE_WIDTH: f32 = 16.;
 impl Plugin for SnakeGamePlugin {
     fn build(&self, app: &mut App) {
         app.add_event::<SnakeGameEvent>();
         app.insert_state(SnakeGameState::Paused);
-        app.insert_resource(ClearColor(BACKGROUND_COLOR));
+        app.insert_resource(ClearColor(Color::srgb(56. / 256., 105. / 256.,0.0)));
         app.insert_resource(SnakeGame {
             high_score: 0,
             current_score: 0,
-            width: 9,
-            height: 9,
+            width: 8,
+            height: 8,
             square_size: 16.,
             grid_level: -5.,
             square_color_primary: Color::linear_rgb(1.0, 0.5, 0.4),
@@ -90,7 +89,6 @@ fn handle_snake_game_events(
                 let (_, mut menu_vis) = menu_query.single_mut();
                 *menu_vis = Visibility::Visible;
                 game_state.set(SnakeGameState::Paused);
-                snake_game.high_score = snake_game.current_score;
                 player.position = Position { x: 3, y: 3 };
             }
             SnakeGameMessage::WallCollision => {
@@ -100,7 +98,6 @@ fn handle_snake_game_events(
                 let (_, mut menu_vis) = menu_query.single_mut();
                 *menu_vis = Visibility::Visible;
                 game_state.set(SnakeGameState::Paused);
-                snake_game.high_score = snake_game.current_score;
                 player.position = Position { x: 3, y: 3 };
             }
             SnakeGameMessage::PickupCollision => {
@@ -110,8 +107,8 @@ fn handle_snake_game_events(
                 pickup.position.x = thread_rng().gen_range(2..7);
                 pickup.position.y = thread_rng().gen_range(2..7);
 
-                pickup_transform.translation.x = pickup.position.x as f32 * TILE_WIDTH;
-                pickup_transform.translation.y = pickup.position.y as f32 * TILE_WIDTH;
+                pickup_transform.translation.x = pickup.position.x as f32 * snake_game.square_size;
+                pickup_transform.translation.y = pickup.position.y as f32 * snake_game.square_size;
 
                 //add part to tail
                 commands.spawn((
@@ -125,8 +122,8 @@ fn handle_snake_game_events(
                             texture: asset_server.load("images\\fairy-spritesheet.png"),
                             transform: Transform {
                                 translation: Vec3::new(
-                                    player.position.x as f32 * TILE_WIDTH,
-                                    player.position.y as f32 * TILE_WIDTH,
+                                    player.position.x as f32 * snake_game.square_size,
+                                    player.position.y as f32 * snake_game.square_size,
                                     -1.,
                                 ),
                                 ..default()
@@ -141,6 +138,10 @@ fn handle_snake_game_events(
                 ));
                 player.tail_length += 1;
                 snake_game.current_score += 1;
+
+                if(snake_game.high_score < snake_game.current_score) {
+                    snake_game.high_score = snake_game.current_score;
+                }
             }
             SnakeGameMessage::ChangePlayerDirection(direction) => {
                 if player.can_change_direction {

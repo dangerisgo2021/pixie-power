@@ -1,6 +1,6 @@
-
-use crate::domains::game::domain_objects::sprite_with_atlas::SpriteWithAtlas;
 use crate::domains::game::domain_objects::player::{Player, SnakeNode};
+use crate::domains::game::domain_objects::snake_game::SnakeGame;
+use crate::domains::game::domain_objects::sprite_with_atlas::SpriteWithAtlas;
 use crate::domains::game::value_objects::direction::Direction;
 use crate::domains::game::value_objects::position::Position;
 use crate::domains::graphics::resources::sprite_atlas::SpriteSheetAtlas;
@@ -8,6 +8,7 @@ use bevy::prelude::*;
 
 pub fn spawn_player(
     mut commands: Commands,
+    snake_game: Res<SnakeGame>,
     asset_server: Res<AssetServer>,
     atlas_layout: Res<SpriteSheetAtlas>,
 ) {
@@ -34,7 +35,7 @@ pub fn spawn_player(
     //         },
     //     },
     // ));
-    // 
+    //
     // println!("spawn_tail");
     // //add part to tail
     // commands.spawn((
@@ -70,7 +71,11 @@ pub fn spawn_player(
             sprite: SpriteBundle {
                 texture: asset_server.load("images\\fairy-spritesheet.png"),
                 transform: Transform {
-                    translation: Vec3::new(32.0, 64., 0.),
+                    translation: Vec3::new(
+                        2. * snake_game.square_size,
+                        4. * snake_game.square_size,
+                        0.,
+                    ),
                     ..default()
                 },
                 ..default()

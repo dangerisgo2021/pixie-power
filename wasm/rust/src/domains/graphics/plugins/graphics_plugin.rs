@@ -7,7 +7,7 @@ use bevy::{prelude::*};
 use bevy::window::WindowResized;
 
 pub struct GraphicsPlugin;
-const LOGICAL_WIDTH: f32 = 350.0;
+const LOGICAL_WIDTH: f32 = 400.0;
 const LOGICAL_HEIGHT: f32 = 600.0;
 
 impl Plugin for GraphicsPlugin {

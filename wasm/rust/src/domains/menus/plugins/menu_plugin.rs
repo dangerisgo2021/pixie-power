@@ -8,7 +8,7 @@ use crate::domains::menus::services::spawn_menus::spawn_menus;
 use bevy::app::{App, Plugin, Startup, Update};
 use bevy::prelude::*;
 use bevy::ui::Interaction;
-use crate::domains::menus::domain_objects::menu_layer::HudText;
+use crate::domains::menus::domain_objects::menu_layer::{HudText, HudTextId};
 
 pub struct MenuPlugin;
 
@@ -24,11 +24,20 @@ impl Plugin for MenuPlugin {
     }
 }
 
-fn update_hud(snake_game: Res<SnakeGame>, mut hud_text: Query<&mut Text, With<HudText>>) {
+fn update_hud(snake_game: Res<SnakeGame>, mut hud_text: Query<(&mut Text, &HudText), With<HudText>>) {
 
-    for mut text in &mut hud_text {
-        text.sections[1].value = format!("val {}", snake_game.current_score);
+    for (mut text, hud_text) in &mut hud_text {
+        match hud_text.id {
+            HudTextId::current_score => {
+                text.sections[0].value = format!("{}", snake_game.current_score);
+            }
+            HudTextId::high_score => {
+                text.sections[0].value = format!("{}", snake_game.high_score);
+            }
+        }
+
     }
+
 }
 
 fn menu_event_handler(
@@ -39,7 +48,6 @@ fn menu_event_handler(
         match menu_event.menu_button_id {
             MenuButtonId::StartSnake => {
                 println!("Starting snake");
-                // hide menu
 
                 // emit start snake command
                 snake_game_event_writer.send(SnakeGameEvent {

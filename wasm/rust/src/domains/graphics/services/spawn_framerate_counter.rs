@@ -8,6 +8,7 @@ pub fn spawn_framerate_counter(mut commands: Commands) {
         .spawn((
             FramerateCounter,
             NodeBundle {
+                visibility: Visibility::Hidden,
                 background_color: BackgroundColor(Color::BLACK),
                 // make it "always on top" by setting the Z index to maximum
                 // we want it to be displayed over all other UI
