@@ -1,7 +1,3 @@
-use crate::domains::game::plugins::game_plugin::GamePlugin;
-use crate::domains::graphics::plugins::graphics_plugin::GraphicsPlugin;
-use crate::domains::menus::plugins::menu_plugin::MenuPlugin;
-
 use bevy::prelude::*;
 use bevy::window::WindowResolution;
 
@@ -12,7 +8,7 @@ pub fn start_app() {
                 .set(WindowPlugin {
                     primary_window: Some(Window {
                         resizable: true,
-                        canvas: Some("#snake-canvas".into()),
+                        canvas: Some("#window-jumper".into()),
                         resolution: WindowResolution::new(400., 600.),
                         ..default()
                     }),
@@ -20,6 +16,6 @@ pub fn start_app() {
                 })
                 .set(ImagePlugin::default_nearest()),
         )
-        .add_plugins((GraphicsPlugin, GamePlugin, MenuPlugin))
+        // .add_plugins((GraphicsPlugin, GamePlugin, MenuPlugin))
         .run();
 }
